@@ -6,8 +6,13 @@ class SearchBar extends Component {
   render() {
     // Every render() method must return something
     return (
-      <input />
+      <input onChange={this.onInputChange} />
     )
+  }
+
+  // Event handler
+  onInputChange(event) {
+    console.log(event.target.value);
   }
 }
 
