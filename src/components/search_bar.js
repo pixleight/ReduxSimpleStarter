@@ -16,7 +16,7 @@ class SearchBar extends Component {
   render() {
     // Every render() method must return something
     return (
-      <input onChange={(event) => console.log(event.target.value)} />
+      <input onChange={(event) => this.setState({ term: event.target.value })} />
     )
   }
 }
