@@ -6,13 +6,6 @@ import SearchBar from './components/search_bar';
 
 const API_KEY = 'AIzaSyA5tXYUFCSbNd941qOhImLkdlfqLEM--EU';
 
-// Execute a YouTube search; pass API key and search term, run function with returned data
-YTSearch({
-  key: API_KEY,
-  term: 'surfboards'
-}, function(data){
-  console.log(data);
-})
 
 // Create a new component. This component should produce some HTML
 class App extends Component {
@@ -20,6 +13,14 @@ class App extends Component {
     super(props);
 
     this.state = { videos: [] }
+
+    // Execute a YouTube search; pass API key and search term, run function with returned data
+    YTSearch({
+      key: API_KEY,
+      term: 'surfboards'
+    }, (data) => {
+      this.setState({ videos: data });
+    })
   }
 
   render() {
