@@ -19,10 +19,12 @@ class App extends Component {
       selectedVideo: null,
     }
 
+    // Execute initial search
     this.videoSearch('surfboards');
 
   }
 
+  // Separate YT search into its own method
   videoSearch(term) {
     // Execute a YouTube search; pass API key and search term, run function with returned data
     YTSearch({
