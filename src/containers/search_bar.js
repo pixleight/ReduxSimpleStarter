@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchWeather } from '../actions/index.js';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -10,6 +13,8 @@ class SearchBar extends Component {
 
     // binding onInputChange function to SearchBar instance
     this.onInputChange = this.onInputChange.bind(this);
+
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onInputChange(event) {
@@ -20,6 +25,11 @@ class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
+
+    // call fetchWeather action creator
+    this.props.fetchWeather(this.state.term);
+    // empty the search bar value
+    this.setState({ term: '' });
   }
 
   render () {
@@ -39,4 +49,9 @@ class SearchBar extends Component {
   }
 }
 
-export default SearchBar;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchWeather }, dispatch);
+}
+
+// Use null as first argument if container doesn't care about app state
+export default connect(null, mapDispatchToProps)(SearchBar);
